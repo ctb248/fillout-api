@@ -15,14 +15,19 @@ export type FilterClauseType = {
 // in SQL
 export type ResponseFiltersType = FilterClauseType[];
 
-interface SubmissionComponent {
+export interface SubmissionComponent {
   id: string;
   name: string;
   type?: string;
-  value: string | number;
+  value: string | number | null;
 }
 
 export interface Submission {
+  submissionId: string;
+  submissionTime: string;
+  lastUpdatedAt: string;
+  quiz?: any;
+  documents: any[];
   questions: SubmissionComponent[];
   calculations: SubmissionComponent[];
   urlParameters: SubmissionComponent[];
