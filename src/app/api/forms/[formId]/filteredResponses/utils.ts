@@ -101,9 +101,10 @@ export const applyFilters = (
 
   /* The updated total/pageCount cannot be reliably calculated from the available data. If the "limit" parameter is the page size, but also the number of 
      responses returned, "totalResponses" necessarily counts records which were not returned, and therefore not filtered by this route whenever there is more than one page.
-     We can determine the updated count for the returned page and assume no change in the others, but cannot make any assertions about how many records would be found matching the same filters with a different offset without querying the entire collection.
+    We can determine the updated count for the returned page and assume no change in the others, but cannot make any assertions about how many records would be found matching the same filters with a different offset without querying the entire collection
   */
-  const newTotal = data.totalResponses - filteredResponses.length;
+  const newTotal =
+    data.totalResponses - (responses.length - filteredResponses.length);
   const newPageCount = Math.ceil(newTotal / limit);
 
   const newResponse: SubmissionsResponse = {
